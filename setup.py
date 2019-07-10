@@ -26,9 +26,9 @@ setup_options = dict(
         'networkx',
         'pulp'
     ],
-    dependency_links = [
-        'git+https://github.com/scrapinghub/portia.git@multiple-item-extraction#egg=slyd&subdirectory=slyd',
-        'git+https://github.com/scrapinghub/portia.git@multiple-item-extraction#egg=slybot&subdirectory=slybot'
+    dependency_links=[
+        'git+https://github.com/xduquesne/portia.git@2to3#egg=slyd&subdirectory=slyd',
+        'git+https://github.com/xduquesne/portia.git@2to3#egg=slybot&subdirectory=slybot'
     ],
     tests_requires = [
         'pytest'
