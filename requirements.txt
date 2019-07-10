@@ -9,4 +9,4 @@ pulp>=1.6.0
 -e git+https://github.com/scrapinghub/portia.git@nui-develop-backup#egg=slybot&subdirectory=slybot
 # For demo2
 matplotlib>=1.4.3
-ete2>=2.3.10
+ete3>=3.1.1
