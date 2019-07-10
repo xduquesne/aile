@@ -14,17 +14,17 @@ if __name__ == '__main__':
     else:
         out_path = './slybot-project'
 
-    print 'Downloading URL...',
+    print('Downloading URL...', end=' ')
     t1 = time.clock()
     page = hp.url_to_page(url)
-    print 'done ({0}s)'.format(time.clock() - t1)
+    print('done ({0}s)'.format(time.clock() - t1))
 
-    print 'Extracting items...',
+    print('Extracting items...', end=' ')
     t1 = time.clock()
     ie = aile.kernel.ItemExtract(aile.ptree.PageTree(page))
-    print 'done ({0}s)'.format(time.clock() - t1)
+    print('done ({0}s)'.format(time.clock() - t1))
 
-    print 'Generating slybot project...',
+    print('Generating slybot project...', end=' ')
     t1 = time.clock()
     aile.slybot_project.generate(ie, out_path)
-    print 'done ({0}s)'.format(time.clock() - t1)
+    print('done ({0}s)'.format(time.clock() - t1))

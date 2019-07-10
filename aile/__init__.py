@@ -9,7 +9,7 @@ from . import ptree
 def generate_slybot_project(url, path='slybot-project', verbose=False):
     def _print(s):
         if verbose:
-            print s,
+            print(s, end=' ')
 
     _print('Downloading URL...')
     t1 = time.clock()

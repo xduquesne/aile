@@ -43,15 +43,15 @@ def draw_tree(ptree, labels=None):
 if __name__ == '__main__':
     url = sys.argv[1]
 
-    print 'Downloading URL...',
+    print('Downloading URL...', end=' ')
     t1 = time.clock()
     page = hp.url_to_page(url)
-    print 'done ({0}s)'.format(time.clock() - t1)
+    print('done ({0}s)'.format(time.clock() - t1))
 
-    print 'Extracting items...',
+    print('Extracting items...', end=' ')
     t1 = time.clock()
     ie = aile.kernel.ItemExtract(aile.ptree.PageTree(page))
-    print 'done ({0}s)'.format(time.clock() - t1)
+    print('done ({0}s)'.format(time.clock() - t1))
 
-    print 'Drawing HTML tree'
+    print('Drawing HTML tree')
     draw_tree(ie.page_tree, ie.labels)

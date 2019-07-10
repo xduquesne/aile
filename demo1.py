@@ -76,17 +76,17 @@ def annotate(page, labels, out_path="annotated.html"):
 if __name__ == '__main__':
     url = sys.argv[1]
 
-    print 'Downloading URL...',
+    print('Downloading URL...', end=' ')
     t1 = time.clock()
     page = hp.url_to_page(url)
-    print 'done ({0}s)'.format(time.clock() - t1)
+    print('done ({0}s)'.format(time.clock() - t1))
 
-    print 'Extracting items...',
+    print('Extracting items...', end=' ')
     t1 = time.clock()
     ie = aile.kernel.ItemExtract(aile.ptree.PageTree(page))
-    print 'done ({0}s)'.format(time.clock() - t1)
+    print('done ({0}s)'.format(time.clock() - t1))
 
-    print 'Annotating HTML'
+    print('Annotating HTML')
     labels = np.repeat(-1, len(ie.page_tree.page.parsed_body))
     items, cells = ie.table_fragments[0]
     for i in range(cells.shape[0]):

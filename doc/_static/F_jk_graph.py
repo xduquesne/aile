@@ -8,7 +8,7 @@ W = 6
 d = np.linspace(0.0, 1.0, 1000, endpoint=False)
 
 plt.figure()
-for L in xrange(0, W):
+for L in range(0, W):
     plt.plot(d, F(W, L, d))
 plt.savefig('F_jk_no_labels.svg')
 

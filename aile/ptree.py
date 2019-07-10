@@ -100,7 +100,7 @@ def tree_nodes(page):
 class PageTree(object):
     def __init__(self, page):
         self.page = page
-        index, self.nodes = zip(*tree_nodes(page))
+        index, self.nodes = list(zip(*tree_nodes(page)))
         self.index = np.array(index)
         self.n_nodes = len(self.nodes)
         self.reverse_index = np.repeat(-1, len(page.parsed_body))

@@ -80,9 +80,9 @@ def detect_field_type(ptree, locations):
             types.append('a')
         else:
             types.append('text')
-    if all(map(lambda x: x == 'img', types)):
+    if all([x == 'img' for x in types]):
         return 'image'
-    elif all(map(lambda x: x == 'a', types)):
+    elif all([x == 'a' for x in types]):
         return 'url'
     else:
         return 'text'
@@ -196,7 +196,7 @@ def common_suffix(sequences):
     >>> common_suffix([[1,2,3,4,5], [0,3,4,5], [2,3,4,5]])
     [3, 4, 5]
     """
-    return list(reversed(common_prefix(map(reversed, sequences))))
+    return list(reversed(common_prefix(list(map(reversed, sequences)))))
 
 
 def suffix_jump(sequence, suffix):
@@ -499,7 +499,7 @@ def extract_fields(ptree, item_locations,
                        for field_location in extract_field_locations(
                                ptree, item_location, is_of_interest)]
     grouped = group_fields(ptree, field_locations)
-    grouped_locations = sorted(grouped.values(), cmp=cmp_location_groups)
+    grouped_locations = sorted(list(grouped.values()), cmp=cmp_location_groups)
     return [Field(name='{0}-field-{1}'.format(name, i),
                   locations=locations,
                   required=False,

@@ -66,7 +66,7 @@ class ExtractTest(object):
             name = item_name(self.schema, item)
             if name:
                 grouped_items[name].append(item)
-        return grouped_items.values()
+        return list(grouped_items.values())
 
     def close(self):
         shutil.rmtree(self.project_path)

@@ -169,8 +169,7 @@ class TreeClustering(object):
         for c in labels_to_clusters(clt.fit_predict(D)):
             if len(c) >= min_cluster_size:
                 if separate_descendants:
-                    self.clusters += filter(lambda x: len(x) >= min_cluster_size,
-                                            cut_descendants(D, c, self.page_tree))
+                    self.clusters += [x for x in cut_descendants(D, c, self.page_tree) if len(x) >= min_cluster_size]
                 else:
                     self.clusters.append(c)
         self.labels = clusters_to_labels(self.clusters, D.shape[0])
@@ -303,8 +302,7 @@ def extract_items_with_label(ptree, labels, label_to_extract):
             i = ptree.match[i]
         else:
             i += 1
-    return filter(lambda item: some_root_has_label(labels, item, label_to_extract),
-                  items)
+    return [item for item in items if some_root_has_label(labels, item, label_to_extract)]
 
 
 def vote(sequence):
@@ -322,8 +320,7 @@ def regularize_item_length(ptree, labels, item_locations, max_items_cut_per=0.33
                     for item_location in item_locations)
     if cut_items > max_items_cut_per*len(item_locations):
         return []
-    item_locations = filter(lambda x: len(x) >= min_item_length,
-                            item_locations)
+    item_locations = [x for x in item_locations if len(x) >= min_item_length]
     if cut_items > 0:
         label_count = collections.Counter(
             labels[root] for item_location in item_locations
@@ -460,8 +457,8 @@ def match_graph(all_paths):
     been matched using DTW"""
     G = nx.Graph()
     for path_set_1, path_set_2 in itertools.combinations(all_paths, 2):
-        n1, p1 = zip(*path_set_1)
-        n2, p2 = zip(*path_set_2)
+        n1, p1 = list(zip(*path_set_1))
+        n2, p2 = list(zip(*path_set_2))
         D = pairwise_path_distance(p1, p2)
         DTW = dtw.from_distance(D)
         a1, a2 = dtw.path(DTW)
